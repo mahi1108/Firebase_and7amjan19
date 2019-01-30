@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cubex.mahesh.firebase_and7amjan19">
 
+    <uses-permission android:name=
+  "android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name=
+                             "android.permission.CAMERA"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -15,6 +21,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".FbDatabaseActivity">
+        </activity>
+        <activity android:name=".FbStorageActivity">
         </activity>
     </application>
 
