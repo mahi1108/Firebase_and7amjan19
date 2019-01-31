@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_fb_database.*
 
 class FbDatabaseActivity : AppCompatActivity() {
@@ -24,6 +25,10 @@ class FbDatabaseActivity : AppCompatActivity() {
                 child_uid.child("gender").setValue(et3.text.toString())
                 child_uid.child("mno").setValue(et4.text.toString())
                 child_uid.child("address").setValue(et5.text.toString())
+                var fToken = FirebaseInstanceId.getInstance().token
+                child_uid.child("fcm_token").setValue(fToken)
+
+
 
             var i = Intent(this@FbDatabaseActivity,
                 FbStorageActivity::class.java)
