@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:id="@+id/cview"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_weight="0.2"/>
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.7">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <Button
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/ic_male_close_up_silhouette_with_tie"
+                    android:id="@+id/gender"
+                    android:layout_gravity="center"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text=" Name"
+                    android:textSize="20sp"
+                    android:textColor="#FF0000"
+                    android:id="@+id/name"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Mobile Number"
+                android:textSize="20sp"
+                android:textColor="#0000FF"
+                android:id="@+id/mno"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Address"
+                android:textSize="20sp"
+                android:textColor="#054"
+                android:id="@+id/address"/>
+
+    </LinearLayout>
+
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/ic_chat_circular_bubble_with_message_text_lines"
+            android:id="@+id/chat"
+            android:layout_gravity="center"/>
+
+
+
+</LinearLayout>

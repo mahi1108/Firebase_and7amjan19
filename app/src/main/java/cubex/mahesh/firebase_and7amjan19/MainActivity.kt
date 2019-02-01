@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity,
                         "Login Success",
                         Toast.LENGTH_LONG).show()
+
+                    var i = Intent(this@MainActivity,
+                                                DashboardActivity::class.java)
+                    startActivity(i)
+
                 }else{
                     Toast.makeText(this@MainActivity,
                         "Login Fail",

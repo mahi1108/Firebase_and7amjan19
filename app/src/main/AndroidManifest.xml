@@ -2,11 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cubex.mahesh.firebase_and7amjan19">
 
-    <uses-permission android:name=
-  "android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name=
-                             "android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
             android:allowBackup="true"
@@ -25,6 +22,8 @@
         <activity android:name=".FbDatabaseActivity">
         </activity>
         <activity android:name=".FbStorageActivity">
+        </activity>
+        <activity android:name=".DashboardActivity">
         </activity>
     </application>
 

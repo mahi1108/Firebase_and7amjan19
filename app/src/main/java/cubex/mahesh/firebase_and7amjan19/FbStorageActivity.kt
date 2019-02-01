@@ -97,48 +97,14 @@ class FbStorageActivity : AppCompatActivity() {
                 getReference("files")
             var task = sRef.child(FirebaseAuth.getInstance().uid!!+"/profile_pic.jpg").
                 putFile(file_path)
-      /*      task.addOnCompleteListener {
-                if(it.isSuccessful){
-
-                    sRef.downloadUrl.addOnSuccessListener {
-                        var fDbase = FirebaseDatabase.getInstance()
-                        var fRef = fDbase.getReference("students")
-                        var uid_ref = FirebaseAuth.getInstance().uid
-                        var child_uid = fRef.child(uid_ref!!)
-                        child_uid.child("profile_pic").setValue(it.toString())
-
-                    }
-
-
-                }else{
-Toast.makeText(this@FbStorageActivity,
-    "Failed to Upload File into Storage ",
-    Toast.LENGTH_LONG).show()
-                }
-            } */
-
-            val urlTask = task.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
-                    }
-                }
-                return@Continuation sRef.downloadUrl
-            }).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-
-                    var fDbase = FirebaseDatabase.getInstance()
-                    var fRef = fDbase.getReference("students")
-                    var uid_ref = FirebaseAuth.getInstance().uid
-                    var child_uid = fRef.child(uid_ref!!)
-                    child_uid.child("profile_pic").setValue(downloadUri.toString())
-
-
-                } else {
-                    // Handle failures
-                    // ...
-                }
+            task.addOnSuccessListener {
+                var url = it.downloadUrl.toString()
+                var fDbase = FirebaseDatabase.getInstance()
+                var fRef = fDbase.getReference("students")
+                var uid_ref = FirebaseAuth.getInstance().uid
+                var child_uid = fRef.child(uid_ref!!)
+                child_uid.child("profile_pic_url").setValue(url)
             }
+
         }
 }
