@@ -16,6 +16,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var mInterstitialAd = InterstitialAd(this@MainActivity)
+        mInterstitialAd.adUnitId = "ca-app-pub-6232583571965519/6871175661"
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+
+        var mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this@MainActivity)
+        //mRewardedVideoAd.rewardedVideoAdListener = this
+        mRewardedVideoAd.loadAd("ca-app-pub-6232583571965519/2357215580",
+            AdRequest.Builder().build())
+
+
         login.setOnClickListener {
             var fAuth = FirebaseAuth.getInstance()
             var task = fAuth.signInWithEmailAndPassword(
@@ -61,27 +72,52 @@ class MainActivity : AppCompatActivity() {
         }
 
         banner.setOnClickListener {
-
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
         }
 
         interestial.setOnClickListener {
-            var mInterstitialAd = InterstitialAd(this)
-            mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
-            mInterstitialAd.show()
+
+            if(mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            }
         }
 
         rewarded.setOnClickListener {
-            var mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
-            //mRewardedVideoAd.rewardedVideoAdListener = this
-            mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
-                AdRequest.Builder().build())
+
             if (mRewardedVideoAd.isLoaded) {
                 mRewardedVideoAd.show()
             }
         }
 
 
+        mlkit.setOnClickListener {
+
+            startActivity(Intent(this@MainActivity,
+                MLKitActivity::class.java))
+        }
 
     } // onCreate( )
 }
+
+/*
+FCM WebSevice URL
+    Post Request :
+      https://fcm.googleapis.com/fcm/send  - URL
+
+  Header :
+    1. Authorization : key=AAAAY6VNnHA:APA91bG70OUW6NuhMYGanG7OZ5QoOqLDxBhb6MDMFHCXlrIkY3e_2X5Ke3B-b0lUzdqaTZ0oZtTEhy_6vv5vcTZetsRd-OCCdPEydECS93rWDFeZp4SgZjOPoGGqavOTrJoVfKWySrjf
+    2. Content-Type : application/json
+
+   Body :
+
+        {
+            "data" : {
+                  "title" : "Message from Rahul Kothari App",
+                  "body":"Happy 72nd Independence Day",
+                },
+              "registration_ids" :[fcm_token1,fcm_token2]
+        }
+
+
+ */

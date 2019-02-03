@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -127,7 +128,6 @@ class DashboardActivity : AppCompatActivity() {
 
     fun sendFcmMessage(token:String?, msg:String?)
     {
-        runOnUiThread {
         var jsonObjec: JSONObject? = null
         var bodydata:String = msg!!
 
@@ -141,7 +141,7 @@ class DashboardActivity : AppCompatActivity() {
         jsonObjec2.put("body", bodydata);
         jsonObjec2.put("title", "Text Message from Android 7AMJan19")
         jsonObjec2.put("fcm_type", "text")
-        jsonObjec.put("data", jsonObjec2);
+        jsonObjec.put("notification", jsonObjec2);
 
         jsonObjec.put("time_to_live", 172800);
         jsonObjec.put("priority", "HIGH");
@@ -168,19 +168,22 @@ class DashboardActivity : AppCompatActivity() {
 //                    "Message Sending Success",
 //                    Toast.LENGTH_LONG).show()
 
+                Log.i("msg",response!!.body().toString())
+
             }
             override fun onFailure(call: Call?, e: IOException?) {
 //                Toast.makeText(this@DashboardActivity,
 //                    "Message Sending Failure",
 //                    Toast.LENGTH_LONG).show()
+
+                Log.i("msg","Fail....")
+
             }
         })
-        }
     }
 
     fun sendFcmMessageToAll(msg:String,fcm_tokens_list:MutableList<String>)
     {
-        runOnUiThread {
         var bodydata:String = msg
 
         var  jsonObjec =  JSONObject()
@@ -190,8 +193,7 @@ class DashboardActivity : AppCompatActivity() {
         var jsonObjec2: JSONObject = JSONObject()
         jsonObjec2.put("body", bodydata);
         jsonObjec2.put("title", "Text Message from FbNov7AM Jan19 ")
-        jsonObjec2.put("fcm_type", "text")
-        jsonObjec.put("data", jsonObjec2);
+        jsonObjec.put("notification", jsonObjec2);
 
         jsonObjec.put("time_to_live", 172800);
         jsonObjec.put("priority", "HIGH");
@@ -218,14 +220,17 @@ class DashboardActivity : AppCompatActivity() {
 //                    "Message Sending Success",
 //                    Toast.LENGTH_LONG).show()
 
+                Log.i("msg",response!!.body().toString())
+
             }
             override fun onFailure(call: Call?, e: IOException?) {
 //                Toast.makeText(this@DashboardActivity,
 //                    "Message Sending Failure",
 //                    Toast.LENGTH_LONG).show()
+
+                Log.i("msg","Fail....")
+
             }
         })
-
-        }
     }
 }  // MainActivity
